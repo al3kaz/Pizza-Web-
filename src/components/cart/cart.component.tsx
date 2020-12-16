@@ -2,7 +2,6 @@ import React, { createRef } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import "./cart.styles.css";
 import { AppStateContext } from "../../AppState/AppState";
-import { useDeleteFromCart } from "../../hooks/AddToCart";
 
 export interface CartProps {}
 

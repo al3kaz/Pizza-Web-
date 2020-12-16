@@ -1,5 +1,6 @@
 import React from "react";
-import { useAddToCart, useDeleteFromCart } from "../../hooks/AddToCart";
+import { useDeleteFromCart } from "../../hooks/DeleteFromCart";
+import { useAddToCart } from "../../hooks/AddToCart";
 import { Pizza } from "../../types";
 import "./pizza.styles.css";
 
@@ -7,7 +8,6 @@ export interface PizzaProps {
   pizza: Pizza;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 const PizzaItem: React.FC<PizzaProps> = ({ pizza }) => {
   const addToCart = useAddToCart();
   const handleAddToCart = () => {
@@ -16,7 +16,6 @@ const PizzaItem: React.FC<PizzaProps> = ({ pizza }) => {
   const deleteFromCart = useDeleteFromCart();
   const handleDeleteFromCart = () => {
     deleteFromCart({ id: pizza.id, name: pizza.name, price: pizza.price });
-    console.log({ id: pizza.id, name: pizza.name, price: pizza.price });
   };
 
   return (
