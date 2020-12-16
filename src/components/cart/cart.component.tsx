@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import "./cart.styles.css";
 import { AppStateContext } from "../../AppState/AppState";
@@ -9,78 +9,63 @@ export interface CartState {
   isOpen: boolean;
 }
 
-class Cart extends React.Component<CartProps, CartState> {
-  #containerRef: React.RefObject<HTMLDivElement>;
+const Cart: React.FC<CartProps> = () => {
+  const containerRef: React.RefObject<HTMLDivElement> = useRef(null);
 
-  constructor(props: CartProps) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.#containerRef = createRef();
-  }
-
-  handleOutsideClick = (e: MouseEvent) => {
+  const handleOutsideClick = (e: MouseEvent) => {
     if (
-      this.#containerRef.current &&
-      !this.#containerRef.current.contains(e.target as Node)
+      containerRef.current &&
+      !containerRef.current.contains(e.target as Node)
     ) {
-      this.setState({
-        isOpen: false,
-      });
+      setIsOpen(false);
     }
   };
 
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleOutsideClick);
-  }
-
-  componentWillUnmount() {
-    document.addEventListener("mousedown", this.handleOutsideClick);
-  }
-
-  handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setIsOpen(!isOpen);
   };
 
-  render() {
-    return (
-      <AppStateContext.Consumer>
-        {(state) => {
-          const itemCount = state.cart.items.reduce((sum, item) => {
-            return sum + item.quantity;
-          }, 0);
-          return (
-            <div className="cartContainer" ref={this.#containerRef}>
-              <button
-                className="button"
-                type="button"
-                onClick={this.handleClick}
-              >
-                <FiShoppingCart />
-                <span>{itemCount} pizza(s)</span>
-              </button>
-              <div
-                className="cartDropDown"
-                style={{ display: this.state.isOpen ? "block" : "none" }}
-              >
-                <ul>
-                  {state.cart.items.map((item) => (
-                    <li key={item.id}>
-                      {item.name} &times;{item.quantity}{" "}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  return (
+    <AppStateContext.Consumer>
+      {(state) => {
+        const itemCount = state.cart.items.reduce((sum, item) => {
+          return sum + item.quantity;
+        }, 0);
+        return (
+          <div className="cartContainer" ref={containerRef}>
+            <button className="button" type="button" onClick={handleClick}>
+              <FiShoppingCart />
+              <span>{itemCount} pizza(s)</span>
+            </button>
+            <div
+              className="cartDropDown"
+              style={{ display: isOpen ? "block" : "none" }}
+            >
+              <ul>
+                {state.cart.items.map((item) => (
+                  <li key={item.id}>
+                    {item.name} &times;{item.quantity}{" "}
+                  </li>
+                ))}
+              </ul>
             </div>
-          );
-        }}
-      </AppStateContext.Consumer>
-    );
-  }
-}
+          </div>
+        );
+      }}
+    </AppStateContext.Consumer>
+  );
+};
 
 export default Cart;
