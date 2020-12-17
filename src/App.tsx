@@ -1,30 +1,18 @@
 import React from "react";
-import pizzas from "./data/pizzas.json";
-import { ReactComponent as Logo } from "./logo/pizza.svg";
-import "./App.css";
-
-import Pizza from "./components/pizza/pizza.component";
-import Cart from "./components/cart/cart.component";
+import { Route, Switch } from "react-router-dom";
 import AppStateProvider from "./AppState/AppState";
-import SpecialOffer from "./components/specialOffer/SpecialOffer.component";
+
+import "./App.css";
+import HomePage from "./Pages/homePage/homePage.component";
+import CheckoutList from "./components/chceckout/Checkout.component";
 
 function App() {
-  const specialOfferPizza = pizzas.find((pizza) => pizza.specialOffer);
   return (
     <AppStateProvider>
-      <div className="App-container">
-        <div className="header">
-          <Logo width={120} height={120} />
-          <div className="siteTitle">Delicious Pizza</div>
-          <Cart />
-        </div>
-        {specialOfferPizza && <SpecialOffer pizza={specialOfferPizza} />}
-        <ul className="pizzaList">
-          {pizzas.map((pizza) => (
-            <Pizza key={pizza.id} pizza={pizza} />
-          ))}
-        </ul>
-      </div>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/Checkout" component={CheckoutList} />
+      </Switch>
     </AppStateProvider>
   );
 }

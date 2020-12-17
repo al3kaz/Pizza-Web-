@@ -1,13 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import "./cart.styles.css";
 import { AppStateContext } from "../../AppState/AppState";
 
 export interface CartProps {}
-
-export interface CartState {
-  isOpen: boolean;
-}
 
 const Cart: React.FC<CartProps> = () => {
   const containerRef: React.RefObject<HTMLDivElement> = useRef(null);
@@ -55,11 +52,16 @@ const Cart: React.FC<CartProps> = () => {
             >
               <ul>
                 {state.cart.items.map((item) => (
-                  <li key={item.id}>
-                    {item.name} &times;{item.quantity}{" "}
-                  </li>
+                  <div>
+                    <li key={item.id}>
+                      {item.name} &times;{item.quantity}
+                    </li>
+                  </div>
                 ))}
               </ul>
+              <Link className="checkout" to="/Checkout">
+                CHECKOUT
+              </Link>
             </div>
           </div>
         );

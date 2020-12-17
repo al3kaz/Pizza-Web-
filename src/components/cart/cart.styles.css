@@ -42,3 +42,14 @@
 .button svg {
   margin: 0 5px 0 0;
 }
+
+.checkout {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  padding: 6px 15px;
+  margin: 10px;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #333333;
+}
