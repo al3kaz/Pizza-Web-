@@ -21,13 +21,22 @@ const defaultStateValue: AppStateValue = {
 
 export const AppStateContext = createContext(defaultStateValue);
 export const AppDispatchContext = createContext<
-  React.Dispatch<AddToCartAction | DeleteFromCartAction> | undefined
+  | React.Dispatch<
+      AddToCartAction | DeleteFromCartAction | SubtractFromCartAction
+    >
+  | undefined
 >(undefined);
 
 interface Action<T> {
   type: T;
 }
 interface AddToCartAction extends Action<"ADD_TO_CART"> {
+  payload: {
+    item: Omit<CartItem, "quantity">;
+  };
+}
+
+interface SubtractFromCartAction extends Action<"SUBTRACT_FROM_CART"> {
   payload: {
     item: Omit<CartItem, "quantity">;
   };
@@ -47,7 +56,11 @@ interface InitializeCartAction extends Action<"INITITIALIZE_CART"> {
 
 const reducer = (
   state: AppStateValue,
-  action: AddToCartAction | InitializeCartAction | DeleteFromCartAction
+  action:
+    | AddToCartAction
+    | InitializeCartAction
+    | DeleteFromCartAction
+    | SubtractFromCartAction
 ) => {
   if (action.type === "ADD_TO_CART") {
     const itemToAdd = action.payload.item;
@@ -66,6 +79,27 @@ const reducer = (
               return item;
             })
           : [...state.cart.items, { ...itemToAdd, quantity: 1 }],
+      },
+    };
+  } else if (action.type === "SUBTRACT_FROM_CART") {
+    const itemToSubtract = action.payload.item;
+    const itemExists = state.cart.items.find(
+      (item) => item.id === itemToSubtract.id
+    );
+    return {
+      ...state,
+      cart: {
+        ...state,
+        items: state.cart.items.map((item) => {
+          if (
+            item.id === itemToSubtract.id &&
+            itemExists &&
+            itemExists.quantity > 1
+          ) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
+          return item;
+        }),
       },
     };
   } else if (action.type === "DELETE_FROM_CART") {
