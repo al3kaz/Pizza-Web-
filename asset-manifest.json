@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Pizza-Web-/static/css/main.721c4b04.chunk.css",
+    "main.js": "/Pizza-Web-/static/js/main.f940c764.chunk.js",
+    "main.js.map": "/Pizza-Web-/static/js/main.f940c764.chunk.js.map",
+    "runtime-main.js": "/Pizza-Web-/static/js/runtime-main.5e0101a3.js",
+    "runtime-main.js.map": "/Pizza-Web-/static/js/runtime-main.5e0101a3.js.map",
+    "static/js/2.5b471d27.chunk.js": "/Pizza-Web-/static/js/2.5b471d27.chunk.js",
+    "static/js/2.5b471d27.chunk.js.map": "/Pizza-Web-/static/js/2.5b471d27.chunk.js.map",
+    "static/js/3.1b6a7ce6.chunk.js": "/Pizza-Web-/static/js/3.1b6a7ce6.chunk.js",
+    "static/js/3.1b6a7ce6.chunk.js.map": "/Pizza-Web-/static/js/3.1b6a7ce6.chunk.js.map",
+    "index.html": "/Pizza-Web-/index.html",
+    "static/css/main.721c4b04.chunk.css.map": "/Pizza-Web-/static/css/main.721c4b04.chunk.css.map",
+    "static/js/2.5b471d27.chunk.js.LICENSE.txt": "/Pizza-Web-/static/js/2.5b471d27.chunk.js.LICENSE.txt",
+    "static/media/pizza.00f3cdf9.svg": "/Pizza-Web-/static/media/pizza.00f3cdf9.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5e0101a3.js",
+    "static/js/2.5b471d27.chunk.js",
+    "static/css/main.721c4b04.chunk.css",
+    "static/js/main.f940c764.chunk.js"
+  ]
+}
