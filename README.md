@@ -1,4 +1,6 @@
-I'm working on Pizza Web, it's my first project in TypeScript using React, hooks, contextAPI for state management
+Pizza Web, it's my first project in TypeScript using React, hooks, contextAPI
+
+[Live Demo](https://al3kaz.github.io/Pizza-Web-/)
 
 ## Available Scripts
 
