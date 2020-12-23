@@ -1,6 +1,7 @@
 import React from "react";
 import { useAddToCart } from "../../hooks/AddToCart";
 import { Pizza } from "../../types";
+import CustomButton from "../custom-button/custom-button.component";
 
 import "./SpecialOffer.styles.css";
 
@@ -14,13 +15,13 @@ const SpecialOffer: React.FC<Props> = ({ pizza }) => {
     addToCart({ id: pizza.id, name: pizza.name, price: pizza.price });
   };
   return (
-    <div className="container">
+    <div className="pizza-special-container">
       <h2>{pizza.name}</h2>
       <p>{pizza.description}</p>
-      <p>{pizza.price}</p>
-      <button type="button" onClick={handleAddToCart}>
+      <p>special price: {pizza.price}</p>
+      <CustomButton type="button" onClick={handleAddToCart}>
         Add to Cart
-      </button>
+      </CustomButton>
     </div>
   );
 };

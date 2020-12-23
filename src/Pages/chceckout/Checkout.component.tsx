@@ -1,8 +1,8 @@
 import React from "react";
 import { AppStateContext } from "../../AppState/AppState";
 import { useDeleteFromCart } from "../../hooks/DeleteFromCart";
-import CheckoutItem from "../checkout-items/checkout-item.component";
-import FormOrder from "../form-order/form-order.component";
+import CheckoutItem from "../../components/checkout-items/checkout-item.component";
+import FormOrder from "../../components/form-order/form-order.component";
 import { IoReturnUpBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "./Checkout.styles.css";

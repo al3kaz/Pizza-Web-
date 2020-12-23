@@ -1,9 +1,13 @@
-.container {
+.pizza-special-container {
   border: 1px solid red;
   margin: 0 0 30px;
   padding: 10px;
 }
 
-.container h2 {
+.pizza-special-container h2 {
   margin: 0 0 10px;
+}
+
+.pizza-special-container p {
+  margin-bottom: 5px;
 }

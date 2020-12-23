@@ -4,7 +4,7 @@ import AppStateProvider from "./AppState/AppState";
 
 import "./App.css";
 import HomePage from "./Pages/homePage/homePage.component";
-import CheckoutList from "./components/chceckout/Checkout.component";
+import CheckoutList from "./Pages/chceckout/Checkout.component";
 
 function App() {
   return (

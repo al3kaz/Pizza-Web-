@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import CustomButton from "../custom-button/custom-button.component";
+import Summary from "../summary/summary.component";
 
 import "./form-order.styles.css";
 
 export interface FormOrderProps {}
 
 const FormOrder: React.FC<FormOrderProps> = () => {
+  const [summary, setSummary] = useState(false);
   const [userCredentials, setUserCredentials] = useState({
     name: "",
     phone: "",
@@ -37,8 +39,9 @@ const FormOrder: React.FC<FormOrderProps> = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSummary(!summary);
   };
-
+  console.log(userCredentials);
   return (
     <div className="user-info-form">
       <h2>Contact info and delivery adress</h2>
@@ -57,7 +60,7 @@ const FormOrder: React.FC<FormOrderProps> = () => {
           <label htmlFor="">PHONE </label>
           <input
             name="phone"
-            type="number"
+            type="tel"
             value={phone}
             required
             onChange={handleChange}
@@ -113,8 +116,9 @@ const FormOrder: React.FC<FormOrderProps> = () => {
             onChange={handleChange}
           />
         </div>
-        <CustomButton>submit</CustomButton>
+        <CustomButton type="submit">submit</CustomButton>
       </form>
+      {summary && <Summary close={handleSubmit} orderInfo={userCredentials} />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { useAddToCart } from "../../hooks/AddToCart";
 import { Pizza } from "../../types";
+import CustomButton from "../custom-button/custom-button.component";
 import "./pizza.styles.css";
 
 export interface PizzaProps {
@@ -14,16 +15,16 @@ const PizzaItem: React.FC<PizzaProps> = ({ pizza }) => {
   };
 
   return (
-    <div className="pizza-container">
+    <ul className="pizza-container">
       <li>
         <h2 className="pizza-title">{pizza.name}</h2>
         <p className="pizza-name">{pizza.description}</p>
         <p>{pizza.price}</p>
       </li>
-      <button type="button" onClick={handleAddToCart}>
+      <CustomButton type="button" onClick={handleAddToCart}>
         Add to Cart
-      </button>
-    </div>
+      </CustomButton>
+    </ul>
   );
 };
 

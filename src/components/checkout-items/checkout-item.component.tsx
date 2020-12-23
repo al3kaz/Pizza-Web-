@@ -2,7 +2,6 @@ import React from "react";
 import { CartItem } from "../../AppState/AppState";
 import { useAddToCart } from "../../hooks/AddToCart";
 import { useSubtractFromCart } from "../../hooks/SubtractFromCart";
-import CustomButton from "../custom-button/custom-button.component";
 import "./checkout-item.styles.css";
 
 export interface CheckoutItemProps {
@@ -40,8 +39,11 @@ const CheckoutItem: React.FC<CheckoutItemProps> = (props) => {
       <span className="checkout-block-container">
         {(props.pizza.price * props.pizza.quantity).toFixed(2)}
       </span>
-      <span className="checkout-block-container">
-        <CustomButton onClick={props.delete}>&times;</CustomButton>
+      <span
+        className="checkout-block-container delete-button"
+        onClick={props.delete}
+      >
+        &times;
       </span>
     </div>
   );

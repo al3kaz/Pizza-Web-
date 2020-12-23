@@ -1,19 +1,17 @@
-.checkout-header-container {
-  display: flex;
-  width: 100%;
-  margin: 20px;
-  justify-content: space-between;
-  border-bottom: 1px solid darkgrey;
-}
-
 .checkout-block-container {
+  font-size: 14px;
   display: flex;
   padding: 10px;
   text-align: center;
   width: 20%;
 }
-
+.delete-button {
+  cursor: pointer;
+}
 .checkout-block-container div {
   padding: 0 5px;
   cursor: pointer;
+}
+.checkout-item-button {
+  padding: 5px;
 }

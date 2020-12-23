@@ -4,11 +4,10 @@
   padding: 10px;
   list-style: none;
 }
-
 .pizza-title {
   margin: 0 0 10px;
 }
 
-.container p {
-  margin-bottom: 0;
+.pizza-container p {
+  margin-bottom: 5px;
 }
