@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
-import "./cart.styles.css";
 import { AppStateContext } from "../../AppState/AppState";
+import "./cart.styles.css";
 
 export interface CartProps {}
 

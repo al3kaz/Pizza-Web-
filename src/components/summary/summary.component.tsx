@@ -1,10 +1,10 @@
 import React from "react";
-import { AppStateContext } from "../../AppState/AppState";
-import CustomButton from "../custom-button/custom-button.component";
+import { AppStateContext, TotalCount } from "../../AppState/AppState";
+import StripeCheckoutButton from "../stripe-button/stripe-button.component";
 import "./summary.styles.css";
 
 export interface SummaryProps {
-  close: (event: React.FormEvent<HTMLFormElement> | any) => void;
+  close: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   orderInfo: {
     name: string;
     phone: string;
@@ -17,18 +17,16 @@ export interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ close, orderInfo }) => {
+  const count = TotalCount();
   return (
     <AppStateContext.Consumer>
       {(state) => {
-        const CartTotal = state.cart.items.reduce(
-          (accumulatedQuantity, cartItem) =>
-            accumulatedQuantity + cartItem.quantity * cartItem.price,
-          0
-        );
         const { name, phone, street, houseNumber, postcode, city } = orderInfo;
         return (
-          <div className="summary-container">
+          <div onClick={close} className="summary-container">
             <div className="summary">
+              <p>{name}</p>
+              <p>{phone}</p>
               <ul>
                 {state.cart.items.map((item) => (
                   <li key={item.id}>
@@ -36,19 +34,16 @@ const Summary: React.FC<SummaryProps> = ({ close, orderInfo }) => {
                   </li>
                 ))}
               </ul>
-              <div className="summary-price">price: {CartTotal}</div>
+              <div className="summary-price">total: {count}</div>
               <div>
-                <h3>Adress</h3>
-                <p>{name}</p>
-                <p>{phone}</p>
+                <h3 className="summary-title">Adress</h3>
                 <p>{street}</p>
                 <p>{houseNumber}</p>
                 <p>{city}</p>
                 <p>{postcode}</p>
               </div>
             </div>
-            <CustomButton style={{ marginBottom: "5px" }}>pay</CustomButton>
-            <CustomButton onClick={close}>back to checkout</CustomButton>
+            <StripeCheckoutButton>pay</StripeCheckoutButton>
           </div>
         );
       }}

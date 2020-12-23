@@ -26,14 +26,23 @@
 
 .summary-price {
   text-transform: uppercase;
-  border-bottom: 1px solid white;
+  color: coral;
+  border-top: coral solid 1px;
 }
 
 .summary ul {
-  border: 1px solid white;
   list-style-type: none;
+  border-top: white solid 1px;
 }
 .summary ul li,
 div {
   padding: 10px;
+}
+
+.summary p {
+  margin: 5px;
+}
+
+.summary-title {
+  text-transform: uppercase;
 }

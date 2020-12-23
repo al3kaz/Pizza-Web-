@@ -1,27 +1,21 @@
 import React from "react";
-import { AppStateContext } from "../../AppState/AppState";
+import { Link } from "react-router-dom";
+import { AppStateContext, TotalCount } from "../../AppState/AppState";
 import { useDeleteFromCart } from "../../hooks/DeleteFromCart";
+import { IoReturnUpBack } from "react-icons/io5";
 import CheckoutItem from "../../components/checkout-items/checkout-item.component";
 import FormOrder from "../../components/form-order/form-order.component";
-import { IoReturnUpBack } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import "./Checkout.styles.css";
 
 export interface CheckOutListProps {}
 
 const CheckoutList: React.FC<CheckOutListProps> = () => {
   const deleteFromCart = useDeleteFromCart();
-
+  const count = TotalCount();
   return (
     <div>
       <AppStateContext.Consumer>
         {(state) => {
-          const CartTotal = state.cart.items.reduce(
-            (accumulatedQuantity, cartItem) =>
-              accumulatedQuantity + cartItem.quantity * cartItem.price,
-            0
-          );
-
           return (
             <div className="checkout-container">
               <div className="checkout-header-container">
@@ -51,7 +45,7 @@ const CheckoutList: React.FC<CheckOutListProps> = () => {
                 );
               })}
               <div className="checkout-total-count">
-                Total price : {CartTotal.toFixed(2)}
+                Total price : {count.toFixed(2)}
               </div>
             </div>
           );

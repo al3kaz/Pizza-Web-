@@ -12,6 +12,7 @@ export interface CheckoutItemProps {
 const CheckoutItem: React.FC<CheckoutItemProps> = (props) => {
   const addToCart = useAddToCart();
   const subtractFromCart = useSubtractFromCart();
+
   const handleAddToCart = () => {
     addToCart({
       id: props.pizza.id,

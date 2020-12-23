@@ -37,14 +37,19 @@ const FormOrder: React.FC<FormOrderProps> = () => {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.preventDefault();
     setSummary(!summary);
   };
-  console.log(userCredentials);
   return (
     <div className="user-info-form">
-      <h2>Contact info and delivery adress</h2>
+      <h2 className="user-info-title">
+        Contact information and delivery adress
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-input">
           <label htmlFor="">NAME </label>

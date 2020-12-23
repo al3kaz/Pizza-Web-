@@ -163,4 +163,14 @@ const AppStateProvider: React.FC = ({ children }) => {
   );
 };
 
+export const TotalCount = () => {
+  const context = useContext(AppStateContext);
+  const Count = context.cart.items.reduce(
+    (accumulatedQuantity, cartItem) =>
+      accumulatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  );
+  return Count;
+};
+
 export default AppStateProvider;
